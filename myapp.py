@@ -3,13 +3,13 @@ import PyPDF2
 import re
 import openai
 
-openai.api_key = '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'
+openai.api_key = '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'
 
 
 # Set the string that will contain the summary     
 pdf_summary_text = ""
 # Open the PDF file
-pdf_file_path = "./physics.pdf"
+pdf_file_path = "physics.pdf"
 # Read the PDF file using PyPDF2
 pdf_file = open(pdf_file_path, 'rb')
 pdf_reader = PyPDF2.PdfReader(pdf_file)
