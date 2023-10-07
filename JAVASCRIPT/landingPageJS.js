@@ -20,3 +20,11 @@ function saveData() {
 
     window.location.href = 'outputPage.html';
 }
+document.getElementById('input-area').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    let videoURL = document.getElementById('dataToSend').value;
+    const videoId = videoURL.split("https://www.youtube.com/watch?v=")[1].split("&")[0];
+    
+    window.location.href = `/outputPage.html?video_id=${videoId}`;
+});
