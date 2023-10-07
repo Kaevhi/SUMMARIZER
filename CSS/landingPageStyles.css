@@ -19,7 +19,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top:-100px;
+    margin-top:-90px;
 }
 
 .title {
@@ -27,14 +27,14 @@ body {
     width: 100%;
 }
 
-.inputText {
-    font-family:'Pixelify Sans', sans-serif;
-    width: 100%;
-    padding-top:10px;
-    padding-bottom:10px;
-    font-size:15px;
-    border-radius:5px;
+.input-box {
+    display: flex;
+    align-items: center;
+    width: 95%;
+    margin-bottom:10px;
 }
+
+
 
 .submit {
     width:101%;
@@ -49,4 +49,21 @@ body {
 }
 .submit button:hover{
     background-color:#0056b3;
+}
+
+.fileInput {
+    font-family: 'Pixelify Sans', sans-serif;
+    border-radius:5px;
+    font-size:15px;
+    padding: 10px 20px;
+    cursor:pointer;
+
+}
+.inputText {
+    font-family:'Pixelify Sans', sans-serif;
+    width: 100%;
+    padding-top:10px;
+    padding-bottom:10px;
+    font-size:15px;
+    border-radius:5px;
 }
