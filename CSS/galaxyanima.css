@@ -1,0 +1,14 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;  /* Optional: To prevent scroll if content overflows */
+}
+
+canvas {
+    z-index: 1;
+}
+
+#input-area, .form-container, .title, .input-box, .inputText, .fileInput, .submit {
+    z-index: 2;
+    position: relative;
+}
