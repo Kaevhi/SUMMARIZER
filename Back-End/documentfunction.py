@@ -7,7 +7,7 @@ import json
 
 MAX_TOKENS = 1200
 
-openai.api_key = 
+openai.api_key = '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'
 
 def summarize_with_gpt3(text):
     response = openai.ChatCompletion.create(
