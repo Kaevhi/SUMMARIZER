@@ -5,11 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Summarizor</title>
-    <link rel="stylesheet" href="/CSS/outputPage.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&family=Roboto+Slab:wght@300&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-</head>
+    <link href="{{ url_for('static', filename='css/outputPage.css') }}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&family=Roboto+Slab:wght@300&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
 <body>
     <div class="chat-container">
@@ -24,7 +23,7 @@
             <button class="send-button">Send</button>
         </div>-->
     </div>
-    <script src="/JAVASCRIPT/outputPage.js"></script>
+    <script src="{{ url_for('static', filename='js/outputPage.js') }}"></script>
 </body>
 
 </html>

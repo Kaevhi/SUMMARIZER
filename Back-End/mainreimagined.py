@@ -10,12 +10,14 @@ import openai
 import magic
 from flask_cors import CORS
 from flask import render_template
+
 #poop
-openai.api_key ='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'
+openai.api_key = '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'
 UPLOAD_FOLDER = 'uploads'
 
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
+
 
 
 ALLOWED_EXTENSIONS = {'mp3', 'wav', 'flac', 'mp4', 'pdf', 'docx', 'json'}

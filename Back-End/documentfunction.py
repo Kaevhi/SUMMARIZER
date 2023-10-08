@@ -5,9 +5,11 @@ import openai
 from docx import Document
 import json
 
+
+
 MAX_TOKENS = 1200
 
-openai.api_key = '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'
+openai.api_key = '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'
 
 def summarize_with_gpt3(text):
     response = openai.ChatCompletion.create(
@@ -21,22 +23,33 @@ def summarize_with_gpt3(text):
     summary = response.choices[0].message.content
     return summary
 
-def process_pdf_for_summary(pdf_file_path):
+def process_pdf_for_summary(pdf_file_path, pages_per_chunk=5):
     pdf_summary_text = ""
     
     with open(pdf_file_path, 'rb') as pdf_file:
         pdf_reader = PyPDF2.PdfReader(pdf_file)
-        for page_num in range(len(pdf_reader.pages)):
-            page_text = pdf_reader.pages[page_num].extract_text().lower()
+        total_pages = len(pdf_reader.pages)
+        
+        for start_page in range(0, total_pages, pages_per_chunk):
+            chunk_text = ""
+            end_page = min(start_page + pages_per_chunk, total_pages)
+            
+            for page_num in range(start_page, end_page):
+                chunk_text += pdf_reader.pages[page_num].extract_text().lower()
+            
+            if len(chunk_text) > MAX_TOKENS:  # rudimentary check; consider more detailed token counting
+                chunk_text = chunk_text[:MAX_TOKENS]
+            
             response = openai.ChatCompletion.create(
                 model="gpt-3.5-turbo",
                 messages=[
                     {"role": "system", "content": "You are a journalist."},
-                    {"role": "user", "content": f"Summarize this: {page_text}"}
+                    {"role": "user", "content": f"Summarize this: {chunk_text}"}
                 ]
             )
-            page_summary = response["choices"][0]["message"]["content"]
-            pdf_summary_text += page_summary + "\n"
+            
+            chunk_summary = response["choices"][0]["message"]["content"]
+            pdf_summary_text += chunk_summary + "\n"
     
     pdf_summary_file_path = pdf_file_path.replace(os.path.splitext(pdf_file_path)[1], "_summary.txt")
     with open(pdf_summary_file_path, "w+") as summary_file:
