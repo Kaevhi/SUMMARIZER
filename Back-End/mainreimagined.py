@@ -11,14 +11,14 @@ import magic
 from flask_cors import CORS
 from flask import render_template
 
-openai.api_key = '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'
+openai.api_key = 
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'mp3', 'wav', 'flac', 'mp4', 'pdf', 'docx', 'json'}
 
-app = Flask(__name__)
+app= Flask(__name__)
 CORS(app)
 
-@app.route('/landingPage.html')
+@app.route('/')
 def landing_page():
     return render_template('landingPage.html')
 
