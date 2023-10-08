@@ -38,7 +38,7 @@ def extract_text_from_docx(docx_path):
     return '\n'.join(full_text)
 
 pdf_summary_text = ""
-pdf_file_path = "physics.txt"
+pdf_file_path = 
 pdf_file = open(pdf_file_path, 'rb')
 pdf_reader = PyPDF2.PdfReader(pdf_file)
 

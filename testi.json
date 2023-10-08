@@ -1,0 +1,40 @@
+{
+    "user": {
+        "name": "John Doe",
+        "age": 30,
+        "email": "johndoe@example.com",
+        "address": {
+            "street": "123 Elm St",
+            "city": "Somewhere",
+            "state": "ST",
+            "postalCode": "12345"
+        },
+        "preferences": {
+            "theme": "dark",
+            "language": "en-US"
+        }
+    },
+    "posts": [
+        {
+            "title": "My first blog post",
+            "content": "This is the content of my first blog post. It was a sunny day when I wrote this.",
+            "date": "2023-10-08",
+            "comments": [
+                {
+                    "author": "Jane Smith",
+                    "content": "Great post, John!"
+                },
+                {
+                    "author": "Bob Anderson",
+                    "content": "Thanks for sharing!"
+                }
+            ]
+        },
+        {
+            "title": "Another day, another post",
+            "content": "Today was rainy, but I still felt like writing. Here's my second blog post.",
+            "date": "2023-10-09",
+            "comments": []
+        }
+    ]
+}
