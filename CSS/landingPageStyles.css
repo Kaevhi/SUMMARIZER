@@ -194,6 +194,13 @@ fieldset {
     height: 100%;
     overflow: hidden;
   }
+  #canvas canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
   
 
   
@@ -219,13 +226,13 @@ fieldset {
 
   
 .rain1 {
-    top: 5rem;
-    left: 2rem;
+    animation: raining 4s linear infinite;
 }
+
 .rain2 {
-    top: 15rem;
-    left: 10rem;
+    animation: raining 5s linear infinite 1s;  /* Starts after a delay of 1 second */
 }
+
 
 
   
@@ -304,12 +311,60 @@ fieldset {
   }
   
   @keyframes raining {
-    from {
+    0% {
         transform: translateX(1200px);
     }
-    to {
+    100% {
         transform: translateX(-1200px);
     }
+}
+
+
+.rain, .drop {
+    opacity: 0;
+    animationPlayState: paused;
+}
+
+@keyframes fireAnimationToLeft {
+    0% {
+        opacity: 0;
+        transform: skewX(-45deg) scaleX(0.1) translateY(-50%);
+    }
+    50% {
+        opacity: 1;
+        transform: skewX(-30deg) scaleX(1) translateY(-50%);
+    }
+    100% {
+        opacity: 0;
+        transform: skewX(-45deg) scaleX(0.1) translateY(-50%);
+    }
+}
+
+
+
+.fire {
+    display: none;
+    position: absolute;
+    background: linear-gradient(orange, yellow, red, transparent);
+    width: 30px;
+    height: 100px;
+    border-radius: 50% 50% 0 0;
+    transform-origin: right center;  /* Setting the point of transformation */
+}
+
+
+.second-bottom-base::before,
+.bottom-base::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 100px;
+}
+.fire {
+    animation: fireAnimationToLeft 2s infinite;
 }
 
 
