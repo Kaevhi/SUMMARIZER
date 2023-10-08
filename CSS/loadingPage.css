@@ -1,0 +1,431 @@
+
+
+body {
+    text-align: center;
+    font-family: 'Pixelify Sans', sans-serif;
+    background-color: #333;
+}
+input{
+    font-family:'Pixelify Sans', sans-serif;
+}
+.triangle-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, rgba(0, 123, 255, 0.7), rgb(214, 230, 247));
+    height: 350px;
+    width: 650px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden; 
+    clip-path: polygon(
+        10% 10%, 
+        100% 25%, 
+        100% 75%, 
+        10% 100%, 
+        0% 75%, 
+        0% 25%
+    );
+    border-radius:30px;
+    transform: scale(0.8);
+    transform-origin: center;
+}
+
+.triangle-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-left: 325px solid transparent;
+    border-right: 325px solid transparent;
+    
+    transform: translateX(-50%);
+}
+
+.triangle-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+}
+
+
+.form-container {
+    z-index: 10;
+    width: 60%; /* Adjust according to your needs */
+    height:130px;
+   
+    
+}
+
+.title {
+    width: 100%;
+    margin-left:30%;
+    z-index:200;
+}
+
+.input-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom:10px;
+    margin-left:80px;
+    padding-top:40px;
+}
+
+.custom-circle:hover {
+    background-color: #03e9f4;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 100px #03e9f4;
+}
+
+.fileInput {
+    font-family: 'Pixelify Sans', sans-serif;
+    border-radius:5px;
+    font-size:15px;
+    padding: 10px 20px;
+    cursor:pointer;
+}
+.inputText {
+    font-family:'Pixelify Sans', sans-serif;
+    width: 100%;
+    padding-top:10px;
+    padding-bottom:10px;
+    font-size:15px;
+    border-radius:5px;
+    margin-left:40p
+}
+
+
+
+fieldset {
+    width: 95%;
+    height: auto;
+    padding: 20px 0;
+    border: 1px solid #AAA;
+    background: linear-gradient(to right, rgba(255,255,255,0.1), rgba(0,0,0,0.2));
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    z-index: 3;
+    border-radius: 100px;
+    
+}
+
+
+
+.bottom-base {
+    height: 30%;
+    width: auto;
+    border-top: 80px solid transparent;
+    border-bottom: 80px solid transparent;
+    border-left: 50px solid black; 
+    border-radius: 100%;
+    position: absolute;
+    top: 50.5%;
+    right: 80%; 
+    transform: translateY(-50%);
+}
+
+.second-bottom-base {
+    height: 35%;
+    width: auto;
+    border-top: 55px solid transparent;
+    border-bottom: 55px solid transparent;
+    border-left: 55px solid black; 
+    border-radius: 100%;
+    position: absolute;
+    top: 50.5%;
+    right: 83%; 
+    transform: translateY(-50%);
+}
+.custom-circle {
+    position: absolute;
+    right: 0;
+    transform: translateX(50%);
+    width: 130px;
+    height: 130px;
+    background-color: yellow;
+    border-radius: 55% 55% 50% 50%;
+    margin-right:115px;;
+    transition: background-color 1.2s;
+    z-index:100;
+    
+}
+
+.custom-circle::before {
+    content: "";
+    position: absolute;
+    width: 100%;  /* Adjust size as per your preference */
+    height: 100%; /* Adjust size as per your preference */
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), transparent);
+    border-radius: 50%;
+    right:1%;
+}
+
+.tip{
+    width: 200px;
+    height: 175px;
+    background: linear-gradient(200deg, rgba(255, 0, 0, 1), rgb(214, 230, 247));
+    clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+    border-radius:5px;
+    border-style:none;
+    border-width:0px;
+   
+
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bigTitle{
+    font-size:80px;
+    margin-bottom:-10px;
+}
+
+
+#canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  #canvas canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+  
+
+  
+  .rain {
+    position: absolute;
+    width: 10rem;
+    height: 1rem;
+    background: #ffffff;
+    border-radius: 20%;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+  
+.drop {
+    width: 7rem;
+    height: 1rem;
+    background: #ffffff;
+    position: absolute;
+    border-radius: 20%;
+    opacity: 0.2;
+}
+
+  
+.rain1 {
+    animation: raining 4s linear infinite;
+}
+
+.rain2 {
+    animation: raining 5s linear infinite 1s;  /* Starts after a delay of 1 second */
+}
+
+
+
+  
+  .drop2 {
+    top: 12rem;
+    animation: raining 4s linear infinite both -2s;
+  }
+  
+  .rain3 {
+    left: 5rem;
+    top: 35rem;
+    animation: raining 3s linear infinite both;
+  }
+  
+  .rain4 {
+    right: 23rem;
+    top: 6rem;
+    animation: raining 4s linear infinite both;
+  }
+  
+  .rain5 {
+    left: 25rem;
+    top: 47rem;
+    animation: raining 3s linear infinite both -3s;
+  }
+  
+  .drop5 {
+    top: -6rem;
+    animation: raining 2s linear infinite both;
+  }
+  
+  .rain6 {
+    right: 10rem;
+    top: 34rem;
+    animation: raining 3s linear infinite both;
+  }
+  
+  .rain7 {
+    left: 34rem;
+    top: 10rem;
+    animation: raining 2s linear infinite both -5s;
+  }
+  
+  .rain8 {
+    right: 25rem;
+    top: 40rem;
+    animation: raining 3s linear infinite both;
+  }
+  
+  .drop8 {
+    top: -7rem;
+    animation: raining 4s linear infinite both -6s;
+  }
+  
+  .rain9 {
+    right: 5rem;
+    animation: raining 3s linear infinite both;
+  }
+  
+  .rain10 {
+    left: 24rem;
+    top: -4rem;
+    animation: raining 2s linear infinite both -3s;
+  }
+  
+  .drop11 {
+    right: 17rem;
+    top: 20rem;
+    animation: raining 3s linear infinite both;
+  }
+  
+  .drop12 {
+    right: 15rem;
+    top: 50rem;
+    animation: raining 4s linear infinite both -1s;
+  }
+  
+  @keyframes raining {
+    0% {
+        transform: translateX(1200px);
+    }
+    100% {
+        transform: translateX(-1200px);
+    }
+}
+
+
+.rain, .drop {
+    opacity: 0;
+    animationPlayState: paused;
+}
+
+@keyframes fireAnimationToLeft {
+    0% {
+        opacity: 0;
+        transform: skewX(-45deg) scaleX(0.1) translateY(-50%);
+    }
+    50% {
+        opacity: 1;
+        transform: skewX(-30deg) scaleX(1) translateY(-50%);
+    }
+    100% {
+        opacity: 0;
+        transform: skewX(-45deg) scaleX(0.1) translateY(-50%);
+    }
+}
+
+
+
+.fire {
+    display: none;
+    position: absolute;
+    background: linear-gradient(orange, yellow, red, transparent);
+    width: 30px;
+    height: 100px;
+    border-radius: 50% 50% 0 0;
+    transform-origin: right center;  /* Setting the point of transformation */
+}
+
+
+.second-bottom-base::before,
+.bottom-base::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 100px;
+}
+.fire {
+    animation: fireAnimationToLeft 2s infinite;
+}
+
+/* Main container scaling */
+.triangle-container {
+    transform: scale(0.8);
+    transform-origin: center;
+    height: 280px;  /* 80% of 350px */
+    width: 520px;   /* 80% of 650px */
+}
+
+/* Adjust the spaceship's circle proportionally */
+.custom-circle {
+    width: 104px; /* 80% of 130px */
+    height: 104px;
+    border-radius: 44% 44% 40% 40%; /* adjust to maintain shape */
+    margin-right: 92px; /* 80% of 115px */
+}
+
+/* Adjust spaceship's base parts */
+.bottom-base {
+    border-top: 64px solid transparent; /* 80% of 80px */
+    border-bottom: 64px solid transparent;
+    border-left: 40px solid black;
+}
+
+.second-bottom-base {
+    border-top: 44px solid transparent; /* 80% of 55px */
+    border-bottom: 44px solid transparent;
+    border-left: 44px solid black;
+}
+
+.tip {
+    width: 160px;  /* 80% of 200px */
+    height: 140px;  /* 80% of 175px */
+}
+
+/* Adjustments to form container and input boxes */
+.form-container {
+    width: 48%;  /* 80% of 60% */
+    height: 104px;  /* 80% of 130px */
+}
+
+.input-box {
+    margin-left: 64px;  /* 80% of 80px */
+}
+
+.inputText {
+    margin-left: 32px;  /* 80% of 40px */
+}
+
+.fileInput {
+    font-size: 12px;  /* 80% of 15px */
+}
+
+.bigTitle {
+    font-size: 64px;  /* 80% of 80px */
+}
+
+
+  
+
