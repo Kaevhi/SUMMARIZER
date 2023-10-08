@@ -125,7 +125,7 @@ fieldset {
     border-left: 50px solid black; 
     border-radius: 100%;
     position: absolute;
-    top: 49%;
+    top: 50.5%;
     right: 80%; 
     transform: translateY(-50%);
 }
@@ -138,7 +138,7 @@ fieldset {
     border-left: 55px solid black; 
     border-radius: 100%;
     position: absolute;
-    top: 49%;
+    top: 50.5%;
     right: 83%; 
     transform: translateY(-50%);
 }
