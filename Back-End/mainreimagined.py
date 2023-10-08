@@ -9,6 +9,7 @@ import re
 import openai
 import magic
 from flask_cors import CORS
+from flask import render_template
 
 openai.api_key = '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'
 UPLOAD_FOLDER = 'uploads'
@@ -16,6 +17,10 @@ ALLOWED_EXTENSIONS = {'mp3', 'wav', 'flac', 'mp4', 'pdf', 'docx', 'json'}
 
 app = Flask(__name__)
 CORS(app)
+
+@app.route('/landingPage.html')
+def landing_page():
+    return render_template('landingPage.html')
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
