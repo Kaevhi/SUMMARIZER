@@ -367,6 +367,11 @@ fieldset {
     animation: fireAnimationToLeft 2s infinite;
 }
 
+.spaceship-group {
+    position: relative;
+    left: 100px;  /* Example value, adjust as needed */
+    top: 50px;   /* Example value, adjust as needed */
+}
 
   
 
