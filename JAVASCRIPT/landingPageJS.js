@@ -56,13 +56,23 @@ function extinguishFire() {
 });
 
 function saveData() {
-    var inputData = document.getElementById('dataToSend').value;
-    localStorage.setItem('userInput', inputData);
-    startSpaceshipAnimation(); // this will start your rocket animation
-    var form = document.getElementById('inputForm');
-    form.remove();
-    window.location.href = 'outputPage.html';  // redirect to output page
+    var formData = new FormData(document.getElementById('inputForm'));
+    
+    fetch('/upload', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        localStorage.setItem('backendResponse', JSON.stringify(data)); 
+        startSpaceshipAnimation(); 
+        window.location.href = 'outputPage.html';
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }
+
 
 function startSpaceshipAnimation() {
     // Your spaceship animation code goes here.
