@@ -1,11 +1,4 @@
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-input{
-    font-family:'Pixelify Sans', sans-serif;
-}
+
 
 body {
     display: flex;
@@ -13,31 +6,83 @@ body {
     align-items: center;
     text-align: center;
     font-family: 'Pixelify Sans', sans-serif;
+    background-color: #333;
+    margin-top:10%;
+}
+input{
+    font-family:'Pixelify Sans', sans-serif;
+}
+.triangle-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(90deg, rgba(0, 123, 255, 0.7), rgb(214, 230, 247));
+    height: 350px;
+    width: 650px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden; 
+    clip-path: polygon(
+        10% 10%, 
+        100% 25%, 
+        100% 75%, 
+        10% 100%, 
+        0% 75%, 
+        0% 25%
+    );
+    border-radius:30px;
 }
 
+.triangle-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-left: 325px solid transparent;
+    border-right: 325px solid transparent;
+    border-bottom: 50px solid rgba(0, 123, 255, 0.7);
+    transform: translateX(-50%);
+}
+
+.triangle-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: rgb(214, 230, 247);
+}
+
+
 .form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top:-90px;
+    z-index: 10;
+    width: 60%; /* Adjust according to your needs */
+    height:130px;
+   
+    
 }
 
 .title {
-    text-align: left;
+    text-align: center;
     width: 100%;
+    margin-left:30%;
+    
 }
 
 .input-box {
     display: flex;
     align-items: center;
-    width: 95%;
+    width: 100%;
     margin-bottom:10px;
+    margin-left:80px;
 }
 
-
-
 .submit {
-    width:101%;
+    width:90%;
     font-size:15px;
     padding: 5px;
     color: #fff;
@@ -47,8 +92,10 @@ body {
     cursor:pointer;
     transition: background-color 0.2s;
 }
-.submit button:hover{
+
+.custom-circle:hover{
     background-color:#0056b3;
+    cursor:pointer;
 }
 
 .fileInput {
@@ -57,7 +104,6 @@ body {
     font-size:15px;
     padding: 10px 20px;
     cursor:pointer;
-
 }
 .inputText {
     font-family:'Pixelify Sans', sans-serif;
@@ -66,4 +112,69 @@ body {
     padding-bottom:10px;
     font-size:15px;
     border-radius:5px;
+    margin-left:40p
+}
+
+
+
+fieldset {
+    width: 95%;
+    height: auto;
+    padding: 20px 0;
+    border: 1px solid #AAA;
+    background: linear-gradient(to right, rgba(255,255,255,0.1), rgba(0,0,0,0.2));
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    z-index: 3;
+    border-radius: 100px;
+    
+}
+
+
+
+.bottom-base {
+    height: 30%;
+    width: auto;
+    border-top: 80px solid transparent;
+    border-bottom: 80px solid transparent;
+    border-left: 50px solid black; 
+    border-radius: 100%;
+    position: absolute;
+    top: 49%;
+    right: 80%; 
+    transform: translateY(-50%);
+}
+
+.second-bottom-base {
+    height: 35%;
+    width: auto;
+    border-top: 55px solid transparent;
+    border-bottom: 55px solid transparent;
+    border-left: 55px solid black; 
+    border-radius: 100%;
+    position: absolute;
+    top: 49%;
+    right: 83%; 
+    transform: translateY(-50%);
+}
+.custom-circle {
+    position: absolute;
+    right: 0;
+    transform: translateX(50%);
+    width: 130px;
+    height: 130px;
+    background-color: yellow;
+    border-radius: 55% 55% 50% 50%;
+    margin-right:115px;;
+    transition: background-color 1.2s;
+    z-index:100;
+}
+.tip{
+    width: 200px;
+    height: 175px;
+    background-color: red;
+    clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+    border-radius:5px;
+    border-style:none;
+    border-width:0px;
+
 }

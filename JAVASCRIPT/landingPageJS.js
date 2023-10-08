@@ -1,15 +1,14 @@
-
-var form = document.getElementById('input-area');
+var form = document.getElementById('inputForm');
 var textarea = document.getElementById('dataToSend');
 
-form.addEventListener('submit', function(event) {
-    event.preventDefault(); 
+// Listen to the custom circle click
+document.getElementById('customSubmit').addEventListener('click', function() {
     saveData();
 });
 
 textarea.addEventListener('keydown', function(event) {
     if (event.key === 'Enter' && !event.shiftKey) {
-        event.preventDefault(); 
+        event.preventDefault();
         saveData();
     }
 });
@@ -17,6 +16,23 @@ textarea.addEventListener('keydown', function(event) {
 function saveData() {
     var inputData = textarea.value;
     localStorage.setItem('userInput', inputData);
-
-    window.location.href = 'outputPage.html';
+    startSpaceshipAnimation();
+    form.remove();
+    window.location.href = 'outputPage.html';  // redirect to output page
 }
+
+function startSpaceshipAnimation() {
+    // Your spaceship animation code goes here.
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Ensure that this code runs after the DOM has been fully loaded
+    var customSubmitButton = document.getElementById('customSubmit');
+    var inputForm = document.getElementById('inputForm');
+
+    if (customSubmitButton && inputForm) {
+        customSubmitButton.addEventListener('click', function() {
+            inputForm.submit();
+        });
+    }
+});

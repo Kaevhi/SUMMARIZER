@@ -6,24 +6,29 @@
     <title>Penis</title>
     <link href="/CSS/landingPageStyles.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&family=Roboto+Slab:wght@300&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&family=Roboto+Slab:wght@300&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    
-    <form id="input-area" action="outputPage.html" method="get" class="form-container">
-        <div>
-        <p class="title">Summarizer</p>
-        <div class="input-box">
-        <textarea id="dataToSend" name="data" placeholder="Enter Input" rows="1" cols="70" class="inputText"></textarea>
-        <input type="file" name="fileInput" accept=".txt,.pdf,.docx" class="fileInput">
-    </div>
-        <input type="submit" value="Submit" class="submit">
-    </div>
-    </form>
 
-    <script src="/JAVASCRIPT/landingPageJS.js"></script>"
+    <div class="triangle-container">
+        <div class="custom-circle" id="customSubmit"></div>
+        <fieldset>
+            <form id="inputForm" action="outputPage.html" method="post" enctype="multipart/form-data" class="form-container">
+                <div>
+                    <p class="title">Summarizer</p>
+                    <div class="input-box">
+                        <textarea id="dataToSend" name="data" placeholder="Enter Input" rows="1" cols="70" class="inputText"></textarea>
+                        <input type="file" id="fileInput" name="fileInput" accept=".txt,.pdf,.docx, .mp4, .mp3" class="fileInput">
+                    </div>
+                </div>
+            </form>
+        </fieldset>
+    </div>
+    <div class="bottom-base"></div>
+    <div class="second-bottom-base"></div>
+    <div class="tip">this is here</div>
+<script src="/JAVASCRIPT/landingPageJS.js"></script>
     
 </body>
 </html>
