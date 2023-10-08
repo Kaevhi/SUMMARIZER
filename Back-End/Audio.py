@@ -1,45 +1,33 @@
-from flask import Flask, request, jsonify
 import os
 import openai
 
-openai.api_key = 'REPLACE'
-
-app = Flask(__name__)
+openai.api_key = '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'
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'mp3', 'wav', 'flac'}
 
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
 def transcribe_with_whisper(audio_path):
     with open(audio_path, "rb") as f:
-        response = openai. WhisperASR.recognize(file=f)
+        response = openai.WhisperASR.recognize(file=f)
     transcript = response.get("data").get("text")
     return transcript
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@app.route('/upload', methods = ['POST'])
-def upload_file():
-    if 'file' not in request.files:
-        return jsonify({"error": "No file part in the request"}), 400
+def transcribe_files_in_directory():
+    transcripts = {}
     
-    file = request.files['file']
+    for filename in os.listdir(UPLOAD_FOLDER):
+        if filename.endswith(tuple(ALLOWED_EXTENSIONS)):
+            filepath = os.path.join(UPLOAD_FOLDER, filename)
+            transcript = transcribe_with_whisper(filepath)
+            transcripts[filename] = transcript
 
-    if file.filename =='':
-        return jsonify({"error": "No file selected"}), 400
-    
-
-    if file and allowed_file(file.filename):
-        filepath = os.path.join(UPLOAD_FOLDER, file.filename)
-        file.save(filepath)
-
-        transcript = transcribe_with_whisper(filepath)
-        #Pass through chatgpt
-        
-        return jsonify({"message:" "Success"}), 200
+    if transcripts:
+        for filename, transcript in transcripts.items():
+            print(f"{filename}:\n{transcript}\n{'-'*50}\n")
     else:
-        return jsonify({"error": "Invalid file type"}), 400
-    
+        print("No valid audio files found in 'uploads' directory.")
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    transcribe_files_in_directory()

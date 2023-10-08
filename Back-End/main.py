@@ -1,10 +1,18 @@
 import os
+from Documents import *
 from flask import Flask, request, jsonify
 from WhisperAI import *
+from docx import Document
+import json
+import PyPDF2
+import re
+import openai
+
 
 app = Flask(__name__)
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'mp3', 'wav', 'flac', 'mp4'}
+API_key = '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'
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -35,21 +43,78 @@ def upload_audio_and_transcribe():
             compress_video(filepath, compressed_video_path)
             extract_audio_from_video(compressed_video_path, audio_output_path)
             
-            transcript = transcribe_audio_with_whisper(audio_output_path, openai_api_key="YOUR_OPENAI_API_KEY")
+            transcript = transcribe_audio_with_whisper(audio_output_path, openai_api_key=API_key)
             #run transcript through API for summary
-
-
-            #<------------------------------------->#
-
+            summarizedScript_mp4 = summarize_with_gpt3(transcript, API_key)
 
             return jsonify({"transcript": transcript}), 200
 
         elif file.filename.endswith(('mp3', 'wav', 'flac')):
             #Executes audio transcription process directly
-            transcript = transcribe_audio_with_whisper(filepath, openai_api_key="YOUR_OPENAI_API_KEY")
+            transcript = transcribe_audio_with_whisper(filepath, openai_api_key=API_key)
+            #run transcript through API for summary
+            summarizedScript_audio = summarize_with_gpt3(transcript, API_key)
+
             return jsonify({"transcript": transcript}), 200
 
-        else:
-            return jsonify({"error": "Invalid file format"}), 400
+        elif file.filename.endswith('.pdf'):
+            #Extract transcript from pdf files
+            pdf_summary_text = ""
+            pdf_file_path = filepath
+            pdf_file = open(pdf_file_path, 'rb')
+            pdf_reader = PyPDF2.PdfReader(pdf_file)
 
+            for page_num in range(len(pdf_reader.pages)):
+
+                page_text = pdf_reader.pages[page_num].extract_text().lower()
+
+                response = openai.ChatCompletion.create(
+                    model="gpt-3.5-turbo",
+                    messages=[
+                        {"role": "system", "content": "You are a journalist."},
+                        {"role": "user", "content": f"Summarize this: {page_text}"},
+                            ],
+            
+                )
+            page_summary = response["choices"][0]["message"]["content"]
+            pdf_summary_text+=page_summary + "\n"
+            
+            pdf_summary_file = pdf_file_path.replace(os.path.splitext(pdf_file_path)[1], "_summary.txt")
+            with open(pdf_summary_file, "w+") as file:
+                file.write(pdf_summary_text)
+
+            pdf_file.close()
+
+            with open(pdf_summary_file, "r") as file:
+                print(file.read())
+
+
+        elif file.filename.endswith('.docx'):
+            transcript = extract_text_from_docx(filepath)
+            #run through chatGPT for summary
+            summarizedScript_docx = summarize_with_gpt3(transcript, API_key)
+        
+        
+        
+        elif file.filename.endswith('.json'):
+            transcript = extract_text_from_json(filepath)
+            #run through chatGPT for summary
+            summarizedScript_json = summarize_with_gpt3(transcript, API_key)
+
+
+        output_file_path = os.path.join(UPLOAD_FOLDER, "summarized_" + os.path.splitext(file.filename[0] + ".txt"))
+        with open(output_file_path, "w") as out_file:
+            if file.filename.endswith('.mp4'):
+                out_file.write(summarizedScript_mp4)
+            elif file.filename.endswith(('mp3', 'wav', 'flac')):
+                out_file.write(summarizedScript_audio)
+            elif file.filename.endswith('.pdf'):
+                out_file.write(pdf_summary_text)
+            elif file.filename.endswith('.docx'):
+                out_file.write(summarizedScript_docx)
+            elif file.filename.endswith('.json'):
+                out_file.write(summarizedScript_json)
+
+            return jsonify({"success": "File uploaded and processed successfully", "summary_file": output_file_path}), 200
+    
     return jsonify({"error": "File upload failed"}), 500
