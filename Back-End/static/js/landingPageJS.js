@@ -8,7 +8,7 @@ document.getElementById("inputForm").addEventListener("submit", function(event) 
     let formData = new FormData(this);
 
     let textInput = document.getElementById("dataToSend").value.trim();
-    let fileInput = document.getElementById("fileInput").files[0];
+    let fileInput = document.getElementById("file").files[0];
 
     if (!textInput && !fileInput) {
         alert("Please provide input text or upload a file before submitting.");

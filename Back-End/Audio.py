@@ -2,7 +2,7 @@ import openai
 from WhisperAI import *
 from documentfunction import *
 
-openai.api_key = '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'
+openai.api_key = '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'
 def transcribe_audio_with_whisper(audio_path):
     openai_api_key = openai.api_key
     

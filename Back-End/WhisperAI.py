@@ -3,7 +3,7 @@ import openai
 import magic 
 from documentfunction import *
 
-openai.api_key = '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'
+openai.api_key = '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'
 
 def is_mp4(filepath):
     mime = magic.Magic(mime=True)

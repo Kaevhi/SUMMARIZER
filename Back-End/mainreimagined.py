@@ -10,9 +10,14 @@ import openai
 import magic
 from flask_cors import CORS
 from flask import render_template
-
-openai.api_key = 
+#poop
+openai.api_key ='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'
 UPLOAD_FOLDER = 'uploads'
+
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+
+
 ALLOWED_EXTENSIONS = {'mp3', 'wav', 'flac', 'mp4', 'pdf', 'docx', 'json'}
 
 app= Flask(__name__)
@@ -25,11 +30,16 @@ def landing_page():
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+@app.route('/output')
+def output_page():
+    data = {}  # get the data you want to display. This could be from processing or a database, etc.
+    return render_template('outputPage.html', data=data)
+
 @app.route('/upload', methods=['POST'])
 def upload_and_process():
     if 'file' not in request.files:
         return jsonify({"error": "No file part in the request"}), 400
-  
+
     file = request.files['file']
     if file.filename == '':
         return jsonify({"error": "No file selected"}), 400
@@ -44,7 +54,7 @@ def upload_and_process():
         result = process_video_for_transcription(filepath)
 
     elif file.filename.endswith(('mp3', 'wav', 'flac')):
-        result = transcribe_audio_with_whisper(filepath)
+        result = transcribe_audio_with_whisper(filepath, openai.api_key)
 
     elif file.filename.endswith('.pdf'):
         result = process_pdf_for_summary(filepath)
