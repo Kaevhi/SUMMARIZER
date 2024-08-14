@@ -3,19 +3,12 @@ import PyPDF2
 import re
 import openai
 
-openai.api_key = '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'
 
-
-# Set the string that will contain the summary     
 pdf_summary_text = ""
-# Open the PDF file
 pdf_file_path = "physics.pdf"
-# Read the PDF file using PyPDF2
 pdf_file = open(pdf_file_path, 'rb')
 pdf_reader = PyPDF2.PdfReader(pdf_file)
-# Loop through all the pages in the PDF file
 for page_num in range(len(pdf_reader.pages)):
-    # Extract the text from the page
     page_text = pdf_reader.pages[page_num].extract_text().lower()
     
     response = openai.ChatCompletion.create(
