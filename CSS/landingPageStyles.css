@@ -67,3 +67,148 @@ body {
     font-size:15px;
     border-radius:5px;
 }
+/* General Styles */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Pixelify Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(45deg, #fad0c4, #fad0c4, #fad0c4, #fbc2eb);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+}
+
+/* Background Color Animation */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Form Container */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -90px;
+    z-index: 10;
+}
+
+/* Input Box */
+.input-box {
+    display: flex;
+    align-items: center;
+    width: 95%;
+    margin-bottom: 10px;
+}
+
+/* Submit Button */
+.submit {
+    width: 101%;
+    font-size: 15px;
+    padding: 5px;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.submit:hover {
+    background-color: #0056b3;
+}
+
+/* Animated Floating Shapes */
+.animated-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.shape {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    opacity: 0.7;
+    animation: floatShape 8s linear infinite;
+}
+
+.shape.circle {
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.shape.square {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.shape.triangle {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 30px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Floating Animation */
+@keyframes floatShape {
+    0% { transform: translateY(100vh) rotate(0deg); }
+    100% { transform: translateY(-10vh) rotate(360deg); }
+}
+
+/* Glowing Particles */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: moveParticles 10s linear infinite;
+}
+
+@keyframes moveParticles {
+    0% { transform: translateY(0) translateX(0) scale(1); }
+    50% { transform: translateY(-50px) translateX(50px) scale(1.2); }
+    100% { transform: translateY(-100px) translateX(-50px) scale(1); }
+}
+
+.moving-box {
+    position: fixed;
+    width: 120px;  
+    height: 120px;
+    background: rgba(128, 0, 128, 0.7); /* Purple color */
+    box-shadow: 0px 0px 20px rgba(128, 0, 128, 0.8);
+    animation: randomBounce 120s infinite ease-in-out;
+}
+
+@keyframes randomBounce {
+    0%   { top: -10%; left: -10%; }  /* Starts off-screen */
+    10%  { top: 50%; left: 90%; }  /* Moves to the right */
+    20%  { top: 110%; left: 40%; }  /* Moves below screen */
+    30%  { top: 80%; left: -15%; }  /* Moves off left */
+    40%  { top: 10%; left: 105%; }  /* Moves off right */
+    50%  { top: -25%; left: 50%; }  /* Moves above screen */
+    60%  { top: 60%; left: 5%; }  /* Moves inside */
+    70%  { top: 110%; left: 110%; }  /* Moves off bottom-right */
+    80%  { top: 30%; left: -20%; }  /* Moves off left again */
+    90%  { top: -20%; left: 70%; }  /* Moves above screen */
+    100% { top: -20%; left: -20%; }  /* Loops back to start */
+}
